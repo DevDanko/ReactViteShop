@@ -1,6 +1,11 @@
 import React from 'react'
 import './Home.css'
 
+/**
+ * Компонент домашней страницы
+ * @component
+ * Отображает приветственное сообщение и краткое описание магазина
+ */
 class Home extends React.Component {
   render() {
     return (

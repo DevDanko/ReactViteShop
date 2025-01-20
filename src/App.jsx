@@ -6,18 +6,27 @@ import Cart from './pages/Cart.jsx'
 import ProductDetails from './pages/ProductDetails.jsx'
 import './App.css'
 
+/**
+ * Главный компонент приложения
+ * Управляет состоянием и навигацией между страницами
+ */
 class App extends React.Component {
   constructor(props) {
     super(props)
+    // Инициализация начального состояния
     this.state = {
-      currentPage: 'home',
-      cart: [],
-      products: [],
-      selectedProductId: null
+      currentPage: 'home',     // Текущая активная страница
+      cart: [],               // Корзина товаров
+      products: [],          // Список всех товаров
+      selectedProductId: null // ID выбранного товара
     }
   }
 
+  /**
+   * Загрузка данных при монтировании компонента
+   */
   componentDidMount() {
+    // Получение списка товаров с API
     fetch('https://fakestoreapi.com/products')
       .then(res => res.json())
       .then(data => {
@@ -25,13 +34,21 @@ class App extends React.Component {
       })
   }
 
+  /**
+   * Обработчик смены страницы
+   * @param {string} page - Идентификатор страницы
+   */
   handlePageChange = (page) => {
     this.setState({ 
       currentPage: page,
-      selectedProductId: null
+      selectedProductId: null // Сброс выбранного товара при смене страницы
     })
   }
 
+  /**
+   * Обработчик выбора товара для просмотра деталей
+   * @param {number} productId - ID выбранного товара
+   */
   handleProductSelect = (productId) => {
     this.setState({
       currentPage: 'product-details',
@@ -39,12 +56,20 @@ class App extends React.Component {
     })
   }
 
+  /**
+   * Добавление товара в корзину
+   * @param {Object} product - Объект товара
+   */
   addToCart = (product) => {
     this.setState(prevState => ({
       cart: [...prevState.cart, product]
     }))
   }
 
+  /**
+   * Рендер текущей активной страницы
+   * @returns {React.Component}
+   */
   renderPage() {
     const { currentPage, selectedProductId } = this.state
     

@@ -1,7 +1,21 @@
 import React from 'react'
 import './Products.css'
 
+/**
+ * Компонент страницы со списком товаров
+ * @component
+ * @param {Object} props
+ * @param {Array} props.products - Массив товаров для отображения
+ * @param {Function} props.addToCart - Функция добавления товара в корзину
+ * @param {Function} props.onProductSelect - Функция выбора товара для просмотра деталей
+ */
 class Products extends React.Component {
+  /**
+   * Обработчик добавления товара в корзину
+   * Предотвращает всплытие события, чтобы не срабатывал переход к деталям товара
+   * @param {Event} e - Событие клика
+   * @param {Object} product - Товар для добавления в корзину
+   */
   handleAddToCart = (e, product) => {
     e.stopPropagation()
     this.props.addToCart(product)

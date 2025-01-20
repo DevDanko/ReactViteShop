@@ -1,17 +1,30 @@
 import React from 'react'
 import './ProductDetails.css'
 
+/**
+ * Компонент страницы с детальной информацией о товаре
+ * @component
+ * @param {Object} props
+ * @param {number} props.productId - ID товара для отображения
+ * @param {Function} props.addToCart - Функция добавления товара в корзину
+ * @param {Function} props.onBack - Функция возврата к списку товаров
+ */
 class ProductDetails extends React.Component {
   constructor(props) {
     super(props)
+    // Инициализация состояния
     this.state = {
-      product: null,
-      loading: true
+      product: null,  // Данные о товаре
+      loading: true  // Флаг загрузки
     }
   }
 
+  /**
+   * Загрузка данных о товаре при монтировании компонента
+   */
   componentDidMount() {
     const { productId } = this.props
+    // Запрос данных о конкретном товаре
     fetch(`https://fakestoreapi.com/products/${productId}`)
       .then(res => res.json())
       .then(data => {
@@ -23,10 +36,12 @@ class ProductDetails extends React.Component {
     const { product, loading } = this.state
     const { addToCart, onBack } = this.props
 
+    // Отображение состояния загрузки
     if (loading) {
       return <div className="product-details">Loading...</div>
     }
 
+    // Проверка наличия данных о товаре
     if (!product) {
       return <div className="product-details">Product not found</div>
     }
