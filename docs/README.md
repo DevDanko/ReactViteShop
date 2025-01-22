@@ -30,6 +30,17 @@ src/
 - [Product Details Page](./pages/ProductDetails.md)
 - [Cart Page](./pages/Cart.md)
 
+## Документация по разделам
+
+- [Компоненты](./components/)
+- [Стили и CSS архитектура](./styles/CSS-Architecture.md)
+
+## Структура стилей
+Проект использует модульный подход к организации CSS:
+- `App.css` - глобальные стили и базовый layout
+- Отдельные CSS файлы для каждого компонента
+- Подробнее в [документации по CSS](./styles/CSS-Architecture.md)
+
 ## API
 Проект использует [Fake Store API](https://fakestoreapi.com/) для получения данных о товарах:
 - GET /products - получение списка всех товаров
